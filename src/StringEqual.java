@@ -6,7 +6,7 @@ public class StringEqual {
         int[] i = {};
         String s = "test";
         String t = "test";
-        solution()
+        //solution()
     }
 
     public String solution(String S, String T) {
