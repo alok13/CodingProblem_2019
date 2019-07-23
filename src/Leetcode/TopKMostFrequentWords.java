@@ -20,7 +20,7 @@ public class TopKMostFrequentWords {
            int count= countMap.getOrDefault(arr[i],1);
            countMap.put(arr[i],count+1);
         }
-        PriorityQueue<Map.Entry<String, Integer>> queue=new PriorityQueue<>(Comparator.comparing(e -> e.getValue()));
+        PriorityQueue   <Map.Entry<String, Integer>> queue=new PriorityQueue<>(Comparator.comparing(e -> e.getValue()));
 
         for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
             queue.offer(entry);
@@ -33,7 +33,7 @@ public class TopKMostFrequentWords {
         while (queue.size() > 0) {
             result.add(queue.poll().getKey());
         }
-        Collections.reverse(result);
+        Collections.sort(result);
         return result;
 
     }
