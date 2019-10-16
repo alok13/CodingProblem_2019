@@ -3,11 +3,14 @@ package BitManipulation;
 public class ReverseBit {
 
     public static void main(String args[]){
-        int i=13;
+        int i=6;
         int pos1=2;
         int pos5=5;
         int result=reverseBits(i);
         System.out.println(result);
+        //100
+        //001
+
     }
 
     public static int reverseBits(int n)
@@ -23,7 +26,8 @@ public class ReverseBit {
             rev <<= 1;
 
             // if current bit is '1'
-            if ((int)(n & 1) == 1)
+            int r=(int)(n & 1);
+            if ( r== 1)
                 rev ^= 1;
 
             // bitwise right shift
