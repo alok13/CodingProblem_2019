@@ -6,27 +6,23 @@ import java.util.concurrent.ThreadLocalRandom;
 class GFG {
     public static final int N = 10;
 
-    // Move pattern on basis of the change of
-    // x coordinates and y coordinates respectively
+
     public static final int moves_X[] = {3, 2, 0, -2, -3, -2, 0, 2, 0, 0};
-    ;
+
     public static final int moves_Y[] = {0, -2, -3, -2, 0, 2, 3, 2, 0, 0};
 
     // function restricts the knight to remain within
-    // the 8x8 chessboard
     boolean limits(int x, int y) {
         return ((x >= 0 && y >= 0) &&
                 (x < N && y < N));
     }
 
-    /* Checks whether a square is valid and
-    empty or not */
+    /* Checks whether a square is valid and empty or not */
     boolean isempty(int a[], int x, int y) {
         return (limits(x, y)) && (a[y * N + x] < 0);
     }
 
-    /* Returns the number of empty squares
-    adjacent to (x, y) */
+    /* Returns the number of empty squares adjacent to (x, y) */
     int getDegree(int a[], int x, int y) {
         int count = 0;
         for (int i = 0; i < N; ++i)
@@ -37,20 +33,18 @@ class GFG {
         return count;
     }
 
-    // Picks next point using Warnsdorff's heuristic.
-    // Returns false if it is not possible to pick
-    // next point.
+
+    // Returns false if it is not possible to pick next point.
     Cell nextMove(int array[], Cell cell) {
         int min_deg_index = -1, degree;
 
         int min_deg = (N + 1), new_x, new_y;
 
-        // Try all N adjacent of (x, y) starting from a random adjacent. Find the adjacent with minimum degree.
-        int start = ThreadLocalRandom.current().nextInt(1000) % N;
-        //System.out.println("start "+start);
+        // Generate random number.
+        int start = ThreadLocalRandom.current().nextInt(N);
+        //Try to look for minimum degree
         for (int count = 0; count < N; count++) {
             int i = (start + count) % N;
-            System.out.println("i "+ i);
             new_x = cell.x + moves_X[i];
             new_y = cell.y + moves_Y[i];
             if ((isempty(array, new_x, new_y)) && (degree = getDegree(array, new_x, new_y)) < min_deg) {
@@ -67,7 +61,7 @@ class GFG {
         new_x = cell.x + moves_X[min_deg_index];
         new_y = cell.y + moves_Y[min_deg_index];
 
-        // Mark next move
+        // Mark it visited
         array[new_y * N + new_x] = array[(cell.y) * N +
                 (cell.x)] + 1;
 
@@ -103,15 +97,11 @@ class GFG {
 
     /* Generates the legal moves using warnsdorff's
     heuristics. Returns false if not possible */
-    boolean findClosedTour() {
+    boolean findClosedTour(int sx, int sy) {
         // Filling up the chessboard matrix with -1's
         int a[] = new int[N * N];
         for (int i = 0; i < N * N; ++i)
             a[i] = -1;
-
-        // initial position
-        int sx = 3;
-        int sy = 2;
 
         // Current points are same as initial points
         Cell cell = new Cell(sx, sy);
@@ -138,7 +128,10 @@ class GFG {
     // Driver Code
     public static void main(String[] args) {
         // While we don't get a solution
-        while (!new GFG().findClosedTour()) {
+        // initial position
+        int sx = 3;
+        int sy = 3;
+        while (!new GFG().findClosedTour(sx,sy)) {
 
         }
     }
@@ -153,5 +146,3 @@ class Cell {
         this.y = y;
     }
 }
-
-// This code is contributed by SaeedZarinfam

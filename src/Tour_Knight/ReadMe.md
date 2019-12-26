@@ -1,0 +1,1 @@
+This program can be run by executing the Main class. Starting coordinate for Piece can be set as in Main class. Default values for starting are (0,0)
