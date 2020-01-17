@@ -38,6 +38,8 @@ public class WordLadder_2 {
         int minLen = Integer.MAX_VALUE;
         if(!wordList.contains(endWord))
         return result;
+
+
         while (!queue.isEmpty()) {
             Node_2 top = queue.poll();
             //top if have shorter result already

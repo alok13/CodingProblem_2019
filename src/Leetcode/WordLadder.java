@@ -1,4 +1,4 @@
-package Leetcode;
+package LeetCode;
 
 import com.sun.deploy.util.ArrayUtil;
 
@@ -6,8 +6,8 @@ import java.util.*;
 
 public class WordLadder {
     public static void main(String[] args) {
-        //String[] list={"hot","dot","dog","lot","log","cog"};
-        String[] list={"hot","dot","dog","lot","log"};
+        String[] list={"hot","dot","dog","lot","log","cog"};
+        //String[] list={"hot","dot","dog","lot","log"};
         List<String> wordList= Arrays.asList(list);
         String beginWord="hit";
         String endWord="cog";
@@ -37,6 +37,7 @@ public class WordLadder {
                     }
                     String newWord=new String(arr);
                     if(wordSet.contains(newWord)){
+                        System.out.println(newWord);
                             queue.add(new WordNode(newWord,top.numSteps+1));
                             wordSet.remove(newWord);
                     }
